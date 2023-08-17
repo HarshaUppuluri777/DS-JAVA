@@ -12,6 +12,7 @@ public class LinkedList
     }
     Node head=null;
     Node tail=null;
+    // Insert nodes
     public void insert(int data){
         Node newNode=new Node(data);
         if(head==null){
@@ -24,6 +25,7 @@ public class LinkedList
             tail=newNode;
         }
     }
+    // Remove nodes 
     public void remove(int data){
         int n=0;
         while(n<data){
@@ -36,6 +38,7 @@ public class LinkedList
         n++;
         }
     }
+    // Remove required node
     public void rempart(int data){
         Node curr=head;
         Node prev=null;
@@ -53,6 +56,7 @@ public class LinkedList
         prev.next=curr.next;
         }
     }
+    // Add a node at required position
     public void midadd(int data,int pos){
         Node news=new Node(data);
         if(pos==1){
@@ -69,6 +73,7 @@ public class LinkedList
         prev.next=news;
         news.next=curr;
     }
+    // Display the LinkedList
     public void display(){
         Node curr=head;
         if(curr==null)
