@@ -1,0 +1,93 @@
+public class LinkedList
+{
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+        Node head=null;
+        Node tail=null;
+    }
+    Node head=null;
+    Node tail=null;
+    public void insert(int data){
+        Node newNode=new Node(data);
+        if(head==null){
+            head=newNode;
+            tail=newNode;
+        }
+        else{
+            Node curr=tail;
+            curr.next=newNode;
+            tail=newNode;
+        }
+    }
+    public void remove(int data){
+        int n=0;
+        while(n<data){
+            Node curr=head;
+        while(curr.next!=tail){
+            curr=curr.next;
+        }
+        curr.next=null;
+        tail=curr;
+        n++;
+        }
+    }
+    public void rempart(int data){
+        Node curr=head;
+        Node prev=null;
+        if(curr.data==data){
+            head=curr.next;
+            curr.next=null;
+        }
+        else{
+            prev=head;
+            curr=head.next;
+        while(curr.data!=data){
+            prev=prev.next;
+            curr=curr.next;
+        }
+        prev.next=curr.next;
+        }
+    }
+    public void midadd(int data,int pos){
+        Node news=new Node(data);
+        if(pos==1){
+          news.next=head;
+          head=news;}
+        int n=2;
+        Node curr=head.next;
+        Node prev=head;
+        while(n<pos){
+            prev=prev.next;
+            curr=curr.next;
+            n++;
+        }
+        prev.next=news;
+        news.next=curr;
+    }
+    public void display(){
+        Node curr=head;
+        if(curr==null)
+         System.out.println("Empty list");
+        while(curr!=null){
+            System.out.println(curr.data);
+            curr=curr.next;
+        }
+    }
+	public static void main(String[] args) {
+		LinkedList l=new LinkedList();
+		l.insert(10);
+		l.insert(20);
+		l.insert(30);
+		l.insert(40);
+		l.insert(50);
+		l.midadd(90,1);
+		l.midadd(60,4);
+		l.midadd(70,6);
+		l.display();
+	}
+}
