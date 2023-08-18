@@ -1,0 +1,102 @@
+public class LinkedList
+{
+    static class Node{
+        int data;
+        Node prev;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.prev=null;
+            this.next=null;
+        }
+    }
+    Node head=null;
+    Node tail=null;
+    int n=0;
+    public void inserts(int data){
+        Node news=new Node(data);
+        if(head==null){
+            head=news;
+            tail=news;
+        }
+        else{
+            tail.next=news;
+            news.prev=tail;
+            tail=news;
+        }
+    }
+// Remove random node
+    public void remove(int data){
+        Node curr=head;
+        Node nex=curr.next;
+        if(curr.data==data){
+            curr.next=null;
+            nex.prev=null;
+            head=nex;
+        }
+        else{
+            Node front=curr;
+            curr=front.next;
+            nex=curr.next;
+        while(curr.data!=data){
+            curr=curr.next;
+            front=front.next;
+            nex=nex.next;
+        }
+        front.next=null;
+        curr.prev=null;
+        curr.next=null;
+        nex.prev=null;
+        front.next=nex;
+        nex.prev=front;
+        }
+    }
+// Add node
+    public void adds(int data,int pos){
+        Node news=new Node(data);
+        Node curr=head;
+        if(pos==1){
+            news.next=curr;
+            curr.prev=news;
+            head=news;
+        }
+        else{
+            n=2;
+            Node front=curr;
+            curr=curr.next;
+            while(pos!=n){
+                curr=curr.next;
+                front=front.next;
+                n++;
+            }
+            front.next=news;
+            news.prev=front;
+            news.next=curr;
+            curr.prev=news;
+        }
+    }
+// Display list
+    public void display(){
+        Node curr=head;
+        if(head==null){
+            System.out.println("Empty list");
+        }
+        else{
+            while(curr!=null){
+                System.out.println(curr.data);
+                curr=curr.next;
+            }
+        }
+    }
+	public static void main(String[] args) {
+		LinkedList l=new LinkedList();
+		l.inserts(10);
+		l.inserts(20);
+		l.inserts(30);
+		l.inserts(40);
+		l.inserts(50);
+		l.adds(60,4);
+		l.remove(40);
+		l.display();
+	}
+}
